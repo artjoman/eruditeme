@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+	<style type="text/css">
+
+		.button {
+			width: 295px;
+    		height: 75px;
+    		background: url(erudite-button-normal.svg);
+    		background-size: 290px auto;
+    		background-repeat: no-repeat;
+    		outline: none;
+    		border: none;
+    		color: #fff;
+    		font-size: 1.5em;
+    		font-weight: bold;
+    		text-transform: uppercase;
+    		font-family: Montserrat, Helvetica;
+		}
+
+		.button:active {
+    		background: url(erudite-button-pressed.svg);
+    		background-size: 290px auto;
+    		background-repeat: no-repeat;
+    		outline: none;
+		}
+
+		.button:disabled {
+			background: url(erudite-button-disabled.svg);
+			background-size: 290px auto;
+    		background-repeat: no-repeat;
+    		outline: none;
+		}
+
+	</style>
+
+</head>
+<body>
+	<button class="button">
+		New Game
+	</button>
+
+	<button class="button" disabled>
+		Join Game
+	</button>
+</body>
+</html>
