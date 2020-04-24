@@ -1,5 +1,16 @@
+html {
+  background-image: url('/images/main_menu_background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Text defaults */
+  color: white;
+  padding: 1em 1em 1em 1em;
+}
+
 .App {
   text-align: center;
+
 }
 
 .App-logo {
