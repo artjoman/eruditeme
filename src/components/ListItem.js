@@ -11,13 +11,13 @@ class ListItem extends Component {
     };
 
     render() {
-        const { todoId, todo } = this.props;
+        const { gameCode, game } = this.props;
         return (
-            <div key="toDoName" className="col s10 offset-s1 to-do-list-item black">
+            <div key="gameCode" className="col s10 offset-s1 to-do-list-item black">
                 <h4>
-                    {todo.title}
+                    {game.title}
                     <span
-                        onClick={() => this.completeClick(todoId)}
+                        onClick={() => this.completeClick(gameCode)}
                         className="complete-todo-item waves-effect waves-light blue lighten-5 blue-text text-darken-4 btn"
                     >
                         <button className="large material-icons">Join Game</button>
