@@ -29,14 +29,15 @@ class List extends Component {
         <div>
           <form onSubmit={this.formSubmit}>
             <div>
-              <i>add</i>
+              <span>New game ID: </span>
               <input 
                 value={formValue}
                 onChange={this.inputChange}
-                id="toDoNext"
+                id="gameId"
                 type="text"
               />
-              <label htmlFor="toDoNext">What Next?</label>
+              <label htmlFor="gameId"></label>
+              <button type="submit">Create</button>
             </div>
           </form>
         </div>
@@ -53,7 +54,7 @@ class List extends Component {
     }
     return (
       <div>
-        <h4>You have no more things ToDo!</h4>
+        <h4>There are no current game rooms. Please create a new Game room</h4>
       </div>
     );
   }
@@ -71,9 +72,9 @@ class List extends Component {
         <div>
           <button onClick={() => this.setState({showForm: !showForm})}>
           {showForm ? (
-            <i>Close</i>
+            <i>Cancel</i>
           ) : (
-            <i>Add</i>
+            <i>Create new Game</i>
           )}
           </button>
         </div>
