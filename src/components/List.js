@@ -37,7 +37,7 @@ class List extends Component {
                 type="text"
               />
               <label htmlFor="gameId"></label>
-              <button type="submit">Create</button>
+              <button className="button" type="submit">Create</button>
             </div>
           </form>
         </div>
@@ -70,7 +70,7 @@ class List extends Component {
           {this.renderToDo()}
         </div>
         <div>
-          <button onClick={() => this.setState({showForm: !showForm})}>
+          <button className="button" onClick={() => this.setState({showForm: !showForm})}>
           {showForm ? (
             <i>Cancel</i>
           ) : (

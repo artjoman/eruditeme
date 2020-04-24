@@ -20,8 +20,8 @@ class ListItem extends Component {
                         onClick={() => this.completeClick(gameCode)}
                         className="complete-todo-item waves-effect waves-light blue lighten-5 blue-text text-darken-4 btn"
                     >
-                        <button className="large material-icons">Join Game</button>
-                        <button className="large material-icons delete-button">Delete Game</button>
+                        <button className="large button material-icons">Join Game</button>
+                        <button className="large button material-icons delete-button">Delete Game</button>
                     </span>
                 </h4>
             </div>
