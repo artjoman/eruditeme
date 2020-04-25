@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { completeToDo, joinGame } from '../actions';
+// import { completeToDo, joinGame } from '../actions';
 
 class ListItem extends Component {
 
     completeClick = completeTodoId => {
         const { completeToDo } = this.props;
-        completeToDo(completeTodoId);
+        // completeToDo(completeTodoId);
     };
 
     joinGameClick = (gameId) => {
         const { joinGame } = this.props;
-        joinGame(gameId);
+        // joinGame(gameId);
     };
 
     render() {
@@ -34,4 +34,4 @@ class ListItem extends Component {
     }
 }
 
-export default connect(null, { completeToDo, joinGame })(ListItem);
+export default connect(null)(ListItem);

@@ -8,6 +8,7 @@ class Game extends Component {
     state = {
         gameId: "",
         code: "",
+        sessionId: "",
         name: "",
         loading: false,
         errors: []
@@ -16,27 +17,28 @@ class Game extends Component {
     handleSubmit = e => {
         e.preventDefault();
         // Join game API: https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=5U6U8K&name=nameofplayer
-        const url = `https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=5U6U8K&name=nameofplayer`;
-
+        const url = `http://www.mocky.io/v2/5ea44e983000005900ce2cbd`;
+        // const url = `https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=5U6U8K&name=nameofplayer`;
         const options = {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             // credentials: 'include',
-            mode: "no-cors"
+            // mode: "no-cors"
         };
 
         fetch(url, options)
             .then(response => response.json())
             .then(data => {
-
+                console.log(data);
                 this.setState({
                     loading: false,
                     gameId: data.gameId,
+                    code: data.code,
                     sessionId: data.sesionId
                 });
-                this.props.history.push('/');
             }
             ).catch(err => {
                 console.log(err);
@@ -75,13 +77,14 @@ class Game extends Component {
     // };
 
     render() {
-        const { gameId, code } = this.props;
+        const { gameId, code, sessionId } = this.state;
         const { errors, loading } = this.state;
         return (
             <div>
                 <div>Game ID: {gameId}</div>
                 <div>Game Code: {code}</div>
-                <button onClick={this.handleSubmit}></button>
+                <div>Session ID: {sessionId}</div>
+                <button className="button" onClick={this.handleSubmit}>Join Game</button>
             </div>
         );
     }

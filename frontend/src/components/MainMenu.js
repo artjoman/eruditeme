@@ -99,7 +99,7 @@ class MainMenu extends Component {
     );
   }
   componentWillMount() {
-    this.props.fetchToDos();
+
   }
   render() {
     const { showForm, username, sessionId } = this.state;

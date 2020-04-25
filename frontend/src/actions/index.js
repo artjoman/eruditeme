@@ -1,26 +1,96 @@
-import { todosRef } from '../firebase'
-const FETCH_TODOS = 'FETCH_TODOS';
+import { fb } from '../firebase'
+import { SESSION, ROOMS } from './types';
 
-export const addTodo = newToDo => async dispatch => {
-    todosRef.push().set(newToDo);
-};
-
-export const completeToDo = completeToDo => async dispatch => {
-    todosRef.child(completeToDo).remove();
-};
-
-export const joinGame = (gameId) => async dispatch => {
-    // TODO: Initiate session
-    // Write to db that user joined the game
-    
-    todosRef.child(gameId).remove();
-};
-
-export const fetchToDos = () => async dispatch => {
-    todosRef.on("value", snapshot => {
+export const getSession = (key) => async dispatch => {
+  fb.database()
+      .ref('/session/'+key)
+      .on('value', snapshot => { 
         dispatch({
-            type: FETCH_TODOS,
-            payload: snapshot.val()
+          type: SESSION,
+          data: snapshot.val()
         });
-    });
+      });
 };
+
+export const addSession = (session) => dispatch => {
+  fb.database()
+      .ref('session')
+      .push(session)
+      .then((data)=>{ 
+        dispatch(getSession(data.key))
+      })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const updateSession = (key, session) => dispatch => {
+  fb.database()
+      .ref('session/')
+      .child(key)
+      .update(session)
+      .then((data) => { })
+      .catch((error) => {
+          console.log(error)
+      });
+};
+
+export const getRooms = () => async dispatch => {
+  fb.database()
+      .ref('/rooms')
+      .on('value', snapshot => { 
+        dispatch({
+          type: ROOMS,
+          data: snapshot.val()
+        });
+      });
+};
+
+
+export const addCategory = (category) => dispatch => {
+  fb.database()
+      .ref('questions')
+      .push(category)
+      .then((data)=>{ 
+        dispatch(addCategoryList(data.key, category.name))
+      })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const addCategoryList = (key, category) => dispatch => {
+  fb.database()
+      .ref('categories/'+key)
+      .set(category)
+      .then((data)=>{ })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const addQuestion = (category, question, lines) => dispatch => {
+  fb.database()
+      .ref('questions/'+category+'/questions')
+      .push(question)
+      .then((data)=>{ 
+        dispatch(addQuestionLines(data.key, lines))
+      })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const addQuestionLines = (header, lines) => dispatch => {
+  lines.map(line => (
+    fb.database()
+      .ref('question-lines/')
+      .child(header)
+      .push(line)
+      .then((data)=>{ })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+  ))
+};
+

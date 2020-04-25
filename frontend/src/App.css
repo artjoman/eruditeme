@@ -95,3 +95,7 @@ html {
     text-overflow: ellipsis;
 }
 
+.modal {
+  height: 800px;
+  overflow: auto;
+}

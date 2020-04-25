@@ -10,6 +10,4 @@ const firebaseConfig = {
     appId: "1:452722543024:web:3771b75e393a5eff596e75",
     measurementId: "G-50XQV0RK8T"
 };
-firebase.initializeApp(firebaseConfig);
-const databaseRef = firebase.database().ref();
-export const todosRef = databaseRef.child("quiz");
+export const fb = firebase.initializeApp(firebaseConfig);
