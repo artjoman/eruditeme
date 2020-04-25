@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import List from './components/List';
+import MainMenu from './components/MainMenu';
 
 function App() {
   return (
     <div className="App">
       <div>
-        <List/>
+        <MainMenu/>
       </div>
     </div>
   );
