@@ -17,19 +17,10 @@ class ListItem extends Component {
         completeToDo(completeTodoId);
     };
 
-    componentDidMount() {
-        fb.database()
-            .ref('/session/'+this.props.key)
-            .on('value', snapshot => { 
-                this.setState({
-                    session: snapshot.val()
-                })
-            });
-
-    }
+    componentDidMount() { }
 
     render() {
-        const { gameCode, game } = this.props;
+        const { gameCode, game, session } = this.props;
         return (
             <div key="gameCode" className="col s10 offset-s1 to-do-list-item black">
                 <h4>
@@ -47,4 +38,11 @@ class ListItem extends Component {
     }
 }
 
-export default connect(null, { completeToDo })(ListItem);
+
+const mapStateToProps = (state) => {
+    return {
+        session: state.session
+    }
+  }
+
+export default connect(mapStateToProps, { completeToDo })(ListItem);
