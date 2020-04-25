@@ -193,10 +193,10 @@ class EditQuestions extends Component {
                                     <>
                                         <TableRow >
                                             <TableCell align="left" style={{ border: 'none' }}>{category.name}</TableCell>
-                                            <TableCell align="center" style={{ border: 'none' }}>{category.questions.length}
+                                            <TableCell align="center" style={{ border: 'none' }}>
                                             </TableCell>
                                         </TableRow>
-                                        {category.questions && category.questions.length > 0 ? (
+                                        {category.length > 0 ? (
                                             category.questions.map(question => (
                                                 <TableRow >
                                                     <TableCell align="left" style={{ border: 'none' }}>{question.text}({question.author})</TableCell>
