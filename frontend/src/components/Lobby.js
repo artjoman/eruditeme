@@ -2,9 +2,8 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormGroup, Input, Button } from '@material-ui/core';
 
-class Game extends Component {
+class Lobby extends Component {
 
     state = {
         gameId: "",
@@ -16,12 +15,10 @@ class Game extends Component {
     };
 
     handleCreate = e => {
-        const { data } = this.props.location;
-
         e.preventDefault();
         // Join game API: https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=5U6U8K&name=nameofplayer
         // const url = `http://www.mocky.io/v2/5ea44e983000005900ce2cbd`;
-        const url = `https://us-central1-erudite-me.cloudfunctions.net/startGame?name=${data?.username}`;
+        const url = `https://us-central1-erudite-me.cloudfunctions.net/startGame?name=nameofplayer`;
         const options = {
             method: 'GET',
             headers: {
@@ -45,8 +42,7 @@ class Game extends Component {
                 const gameData = {
                     code: data.code,
                     sessionId: data.sesionId,
-                    gameId: data.gameId,
-                    username: data?.username
+                    gameId: data.gameId
                 }
                 this.props.history.push({ pathname: '/lobby', data: gameData });
             }
@@ -60,13 +56,10 @@ class Game extends Component {
     };
 
     handleJoin = e => {
-        const {code} = this.state;
-        const { data } = this.props.location;
-
         e.preventDefault();
         // Join game API: https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=5U6U8K&name=nameofplayer
-        // const url = `http://www.mocky.io/v2/5ea44e983000005900ce2cbd`;
-        const url = `https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=${code}&name=${data?.username}`;
+        const url = `http://www.mocky.io/v2/5ea44e983000005900ce2cbd`;
+        // const url = `https://us-central1-erudite-me.cloudfunctions.net/joinGame?code=5U6U8K&name=nameofplayer`;
         const options = {
             method: 'GET',
             headers: {
@@ -126,9 +119,7 @@ class Game extends Component {
 
     render() {
         const { gameId, code, sessionId } = this.state;
-        const { data } = this.props.location;
-
-
+        const { data } = this.props.location
         const { errors, loading } = this.state;
         return (
             <div>
@@ -137,24 +128,10 @@ class Game extends Component {
                 <div>Game Code: {code}</div>
                 <div>Session ID: {sessionId}</div>
                 <button className="button" onClick={this.handleCreate}>Create Game</button>
-                <div>
-                    <FormGroup>
-                        <input name="code" className="input" value={this.state.code || ''} onChange={this.handleFormChange} />
-                        <button className="button" onClick={this.handleJoin}>Join Game</button>
-                    </FormGroup>
-                </div>
+                <button className="button" onClick={this.handleJoin}>Join Game</button>
             </div>
         );
     }
-
-    handleFormChange = (event) => {
-        const { checked, name, value, type } = event.target;
-        const setValue = type === 'checkbox' ? checked : value;
-
-        this.setState({
-            [name]: setValue
-        });
-    };
 }
 
-export default connect()(Game);
+export default connect()(Lobby);
