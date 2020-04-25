@@ -76,3 +76,9 @@ html {
     background-repeat: no-repeat;
     outline: none;
 }
+
+
+.modal {
+  height: 800px;
+  overflow: auto;
+}

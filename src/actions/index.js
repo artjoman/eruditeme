@@ -45,3 +45,52 @@ export const getRooms = () => async dispatch => {
         });
       });
 };
+
+
+export const addCategory = (category) => dispatch => {
+  fb.database()
+      .ref('questions')
+      .push(category)
+      .then((data)=>{ 
+        dispatch(addCategoryList(data.key, category.name))
+      })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const addCategoryList = (key, category) => dispatch => {
+  fb.database()
+      .ref('categories/'+key)
+      .set(category)
+      .then((data)=>{ })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const addQuestion = (category, question, lines) => dispatch => {
+  fb.database()
+      .ref('questions/'+category+'/questions')
+      .push(question)
+      .then((data)=>{ 
+        dispatch(addQuestionLines(data.key, lines))
+      })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const addQuestionLines = (header, lines) => dispatch => {
+  lines.map(line => (
+    fb.database()
+      .ref('question-lines/')
+      .child(header)
+      .push(line)
+      .then((data)=>{ })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+  ))
+};
+
