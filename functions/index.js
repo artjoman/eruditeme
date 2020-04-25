@@ -1,5 +1,14 @@
+const express = require('express');
+const cors = require("cors");
+const app = express();
+
+// Automatically allow cross-origin requests
+app.use(cors({ origin: true }));
+
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
+
+
 
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
@@ -14,9 +23,9 @@ admin.initializeApp();
 
     var gameId = createGameRecord(userName,gameCode);
     var sessionId = createSession(gameId,userName);
-    populateGameSessionLookup(gameCode,gameId);
+    var temp = populateGameSessionLookup(gameCode,gameId);
 
-
+    res.set("Access-Control-Allow-Origin", "*");
     res.send({
       gameId: gameId,
       sesionId: sessionId,
@@ -38,11 +47,26 @@ admin.initializeApp();
       var actualGame = snapshot.val().gameID;
       var sessionId = createSession(actualGame,userName);
 
+      res.set("Access-Control-Allow-Origin", "*");
     res.send({
       gameId: actualGame,
       sesionId: sessionId,
     });
 
+    });
+    
+  });
+
+
+  //for test purposes
+
+  exports.testTrigger = functions.https.onRequest((req, res) => {
+
+    var result = populateGameField();
+
+    res.send({
+      gameId: "sdsdsd",
+      sesisdsonId: "sesssdsdsdionId",
     });
     
   });
@@ -62,6 +86,7 @@ admin.initializeApp();
 
       return gameListRef.key;
   }
+  
 
   function createSession(gameId,userName){
 
@@ -83,6 +108,8 @@ admin.initializeApp();
       gameID: gameId
     });
 
+    return true;
+
   }
 
 
@@ -94,6 +121,48 @@ admin.initializeApp();
         randomString += charSet.substring(randomPoz,randomPoz+1);
     }
     return randomString;
+
+}
+
+function populateGameField(gameId){
+
+  var numberOfQuestions =2;
+
+  //var questionRef = admin.database().ref(questions);
+
+  var db = admin.firestore();
+
+  var questions = db.collection("questions");
+  var key = questions.doc().id;
+
+  var question = questions.where(admin.firestore.FieldPath.documentId(), '>', key).limit(1).get()
+    .then(snapshot => {
+        if(snapshot.size > 0) {
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+                res.send({ quote: doc.data().quote, id: doc.id});
+                incrementAPICalls();
+            });
+        }
+        else {
+            var question = questions.where(admin.firestore.FieldPath.documentId(), '<', key).limit(1).get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    console.log(doc.id, '=>', doc.data());
+                    res.send({ quote: doc.data().quote, id: doc.id});
+                    incrementAPICalls();
+                });
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+        }
+    })
+    .catch(err => {
+        console.log('Error getting documents', err);
+    });
+
+return true;
 
 }
 
