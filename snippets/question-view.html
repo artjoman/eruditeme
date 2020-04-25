@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+	<style type="text/css">
+
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        input[type="radio"] + img {
+            width: 295px;
+
+        }
+
+        label {
+            width: 295px;
+            height: 75px;
+            display: inline-block;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: Montserrat, Helvetica;
+            text-align: center;
+        }
+
+        span {
+            position: relative;
+            top: -55px;
+            font-style: italic;
+        }
+
+	</style>
+
+</head>
+<body>
+    <div>
+        <label>
+        <input type="radio" class="sticky-button" checked/>
+        <!-- <img src="erudite-sticky-button-normal.svg">  -->
+        <img src="erudite-sticky-button-selected.svg"> <!-- show if checked-->
+        <span>Checked</span>
+        </label>
+        <label>
+        <input type="radio" class="sticky-button"/>
+        <img src="erudite-sticky-button-normal.svg">
+        <span>Unchecked</span>
+        </label>
+    </div>
+    <div>
+        <label>
+        <input type="radio" class="sticky-button"/>
+        <img src="erudite-sticky-button-normal.svg">
+        <span>Unchecked</span>
+        </label>
+        <label>
+            Checked
+        <input type="radio" class="sticky-button" checked/>
+        <!-- <img src="erudite-sticky-button-normal.svg"> -->
+        <img src="erudite-sticky-button-selected.svg"> <!-- show if checked-->
+        <span>Checked</span>
+        </label>
+    </div>
+
+</body>
+</html> 

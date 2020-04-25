@@ -59,6 +59,28 @@
          id="circle2471"
          style="opacity:1;fill:url(#pattern2479);fill-opacity:1;stroke:none;stroke-width:8.28007412;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </pattern>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3105"
+       id="linearGradient3140"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.51636907,0,0,0.51636935,-11395.339,-383.39499)"
+       x1="23198.213"
+       y1="2757.104"
+       x2="23198.213"
+       y2="2314.8865" />
+    <linearGradient
+       id="linearGradient3105"
+       inkscape:collect="always">
+      <stop
+         id="stop3101"
+         offset="0"
+         style="stop-color:#91c43f;stop-opacity:1" />
+      <stop
+         id="stop3103"
+         offset="1"
+         style="stop-color:#a3d552;stop-opacity:1" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -68,8 +90,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.45091868"
-     inkscape:cx="515.6036"
-     inkscape:cy="340.00958"
+     inkscape:cx="419.13388"
+     inkscape:cy="262.39026"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -106,7 +128,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -123,27 +145,23 @@
        cx="3449.6934"
        d=""
        inkscape:connector-curvature="0" />
-    <g
-       id="g2028"
-       transform="translate(-10830.063,-1818.4201)">
-      <rect
-         style="opacity:1;fill:#adeb4b;fill-opacity:1;stroke:none;stroke-width:2.99999976;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect2019"
-         width="1024"
-         height="256"
-         x="10830.063"
-         y="2612.4868"
-         ry="69.0196" />
-      <path
-         inkscape:connector-curvature="0"
-         style="opacity:1;fill:#91c43f;fill-opacity:1;stroke:none;stroke-width:2.99999976;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 10830.064,2779.4667 v 20 c 0,38.2369 30.783,69.0196 69.019,69.0196 h 885.961 c 38.237,0 69.02,-30.7827 69.02,-69.0196 v -20 c 0,38.2369 -30.783,69.0196 -69.02,69.0196 h -885.961 c -38.236,0 -69.019,-30.7827 -69.019,-69.0196 z"
-         id="path2021" />
-      <path
-         id="path2023"
-         d="m 10830.064,2701.5063 v -20 c 0,-38.2369 30.783,-69.0196 69.019,-69.0196 h 885.961 c 38.237,0 69.02,30.7827 69.02,69.0196 v 20 c 0,-38.2369 -30.783,-69.0196 -69.02,-69.0196 h -885.961 c -38.236,0 -69.019,30.7827 -69.019,69.0196 z"
-         style="opacity:1;fill:#c0f076;fill-opacity:1;stroke:none;stroke-width:2.99999976;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
-    </g>
+    <rect
+       style="opacity:1;fill:url(#linearGradient3140);fill-opacity:1;stroke:none;stroke-width:2.99999952;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3134"
+       width="1023.9987"
+       height="255.9998"
+       x="0.0017583008"
+       y="794.06671"
+       ry="69.019547" />
+    <path
+       id="path2021"
+       d="m 0.001,961.0466 v 20 c 0,38.2369 30.783,69.0196 69.019,69.0196 h 885.961 c 38.237,0 69.02,-30.7827 69.02,-69.0196 v -20 c 0,38.2369 -30.783,69.0196 -69.02,69.0196 H 69.02 c -38.236,0 -69.019,-30.7827 -69.019,-69.0196 z"
+       style="opacity:1;fill:#759e33;fill-opacity:1;stroke:none;stroke-width:2.99999976;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#c0f076;fill-opacity:1;stroke:none;stroke-width:2.99999976;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 0.001,883.0862 v -20 c 0,-38.2369 30.783,-69.0196 69.019,-69.0196 h 885.961 c 38.237,0 69.02,30.7827 69.02,69.0196 v 20 c 0,-38.2369 -30.783,-69.0196 -69.02,-69.0196 H 69.02 c -38.236,0 -69.019,30.7827 -69.019,69.0196 z"
+       id="path2023" />
   </g>
 </svg>

@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormGroup, Input, Button } from '@material-ui/core';
-import Radio from '@material-ui/core/Radio';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -27,6 +30,7 @@ class EditQuestions extends Component {
                 value: ''
             }],
             questions: [],
+            descriptions: [],
             lines: [],
             answers: [],
             categories: [],
@@ -49,6 +53,7 @@ class EditQuestions extends Component {
         let question = {
             text: this.state.question,
             author: this.state.author || 'System',
+            description: this.state.description
         };
         let answers = this.state.answers;
         dispatch(addQuestion(this.state.category, question, answers));
@@ -235,7 +240,7 @@ class EditQuestions extends Component {
                         </Table>
                     </FormGroup>
                 </Modal>
-                <Modal visible={this.state.visibleQ} width="800" height="600" effect="fadeInUp" onClickAway={() => this.closeModal('visibleQ')}>
+                <Modal visible={this.state.visibleQ} width="800" height="1000" effect="fadeInUp" onClickAway={() => this.closeModal('visibleQ')}>
                     <div class="modal">
                         <FormGroup>
                             <Table width="600px">
@@ -252,6 +257,12 @@ class EditQuestions extends Component {
                                                     <FormControlLabel value={cat.key} control={<Radio />} label={cat.name} />
                                                 ))}
                                             </RadioGroup>
+                                            {/* <InputLabel id="category-label">Category</InputLabel>
+                                        <Select name="category" labelId="category-label" value={this.state.category} onChange={this.handleFormChange} input={<Input />}>
+                                                {this.state.categories.map(cat => (
+                                                    <FormControlLabel value={cat.key} control={<MenuItem />} label={cat.name} />
+                                                ))}
+                                            </Select> */}
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
@@ -262,6 +273,11 @@ class EditQuestions extends Component {
                                     <TableRow>
                                         <TableCell align="center" style={{ border: 'none' }}>
                                             <Input name="author" style={{ width: 300 }} value={this.state.author || ''} type="text" label="Author" placeholder="Author" onChange={this.handleFormChange} />
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell align="center" style={{ border: 'none' }}>
+                                            <Input name="description" style={{ width: 300 }} value={this.state.description || ''} type="text" label="Description" placeholder="Description" onChange={this.handleFormChange} />
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
