@@ -1,4 +1,4 @@
-import {todosRef} from '../firebase'
+import {fb} from '../firebase'
 const FETCH_TODOS = 'FETCH_TODOS';
 
 export const addTodo = newToDo => async dispatch => {
@@ -16,4 +16,27 @@ export const fetchToDos = () => async dispatch => {
       payload: snapshot.val()
     });
   });
+};
+
+
+
+export const addSession = (sesion) => dispatch => {
+  fb.database()
+      .ref('session')
+      .push(session)
+      .then((data)=>{ })
+      .catch((error)=>{
+          console.log('error ' , error)
+      })
+};
+
+export const updateSession = (key, session) => dispatch => {
+  fb.database()
+      .ref('session/')
+      .child(key)
+      .update(session)
+      .then((data) => { })
+      .catch((error) => {
+          console.log(error)
+      });
 };

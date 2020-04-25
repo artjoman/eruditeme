@@ -2,13 +2,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { completeToDo } from '../actions';
+import fb from "./../firebase";
 
 class ListItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          session: null
+        }
+    }
 
     completeClick = completeTodoId => {
         const { completeToDo } = this.props;
         completeToDo(completeTodoId);
     };
+
+    componentDidMount() {
+        fb.database()
+            .ref('/session/'+this.props.key)
+            .on('value', snapshot => { 
+                this.setState({
+                    session: snapshot.val()
+                })
+            });
+
+    }
 
     render() {
         const { gameCode, game } = this.props;
