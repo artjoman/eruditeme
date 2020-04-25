@@ -16,10 +16,13 @@ class List extends Component {
 
   formSubmit = e => {
     const {formValue} = this.state;
-    const {addTodo} = this.props;
+    const { dispatch } = this.props;
     e.preventDefault();
-    addTodo({title: formValue});
     this.setState({formValue: ""});
+    //add session
+    dispatch(actions.addSession({
+      name: this.state.formValue
+    }));
   };
 
   renderForm = () => {
@@ -44,6 +47,7 @@ class List extends Component {
       );
     }
   };
+
   renderToDo() {
     const {data} = this.props;
     const toDos = _.map(data, (value, key) => {
@@ -58,9 +62,7 @@ class List extends Component {
       </div>
     );
   }
-  componentWillMount() {
-    this.props.fetchToDos();
-  }
+  
   render() {
     const {showForm} = this.state;
     return (
@@ -83,10 +85,10 @@ class List extends Component {
   }
 }
 
-const mapStateToProps = ({data}) => {
+const mapStateToProps = (state) => {
   return {
-    data
+      session: state.session
   }
 }
 
-export default connect(mapStateToProps, actions)(List);
+export default connect(mapStateToProps)(List);

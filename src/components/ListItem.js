@@ -45,4 +45,4 @@ const mapStateToProps = (state) => {
     }
   }
 
-export default connect(mapStateToProps, { completeToDo })(ListItem);
+export default connect(mapStateToProps)(ListItem);

@@ -1,4 +1,5 @@
-import {FETCH_TODOS} from '../actions/types';
+import { SESSION } from "../actions/types";
+
 export default (state = {
   session: {}
 }, action) => {
@@ -8,8 +9,6 @@ export default (state = {
         ...state,
         session: action.data
       }
-    case FETCH_TODOS:
-      return action.payload;
     default:
       return state;
   }

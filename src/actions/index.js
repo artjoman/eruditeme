@@ -1,13 +1,5 @@
-import {fb} from '../firebase'
-const FETCH_TODOS = 'FETCH_TODOS';
-
-export const addTodo = newToDo => async dispatch => {
-  todosRef.push().set(newToDo);
-};
-
-export const completeToDo = completeToDo => async dispatch => {
-  todosRef.child(completeToDo).remove();
-};
+import { fb } from '../firebase'
+import { SESSION } from './types';
 
 export const getSession = (key) => async dispatch => {
   fb.database()
@@ -20,11 +12,13 @@ export const getSession = (key) => async dispatch => {
       });
 };
 
-export const addSession = (sesion) => dispatch => {
+export const addSession = (session) => dispatch => {
   fb.database()
       .ref('session')
       .push(session)
-      .then((data)=>{ })
+      .then((data)=>{ 
+        dispatch(getSession(data.key))
+      })
       .catch((error)=>{
           console.log('error ' , error)
       })
