@@ -12,8 +12,10 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route path="/edit" component={EditQuestions} />
-            <Route path="/" component={MainMenu} />
             <Route path="/game" component={Game} />
+            <Route path="/lobby" component={Game} />
+            <Route path="/" component={MainMenu} />
+
           </Switch>
         </BrowserRouter>
       </div>
