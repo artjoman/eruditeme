@@ -1,5 +1,5 @@
 import { fb } from '../firebase'
-import { SESSION } from './types';
+import { SESSION, ROOMS } from './types';
 
 export const getSession = (key) => async dispatch => {
   fb.database()
@@ -32,5 +32,16 @@ export const updateSession = (key, session) => dispatch => {
       .then((data) => { })
       .catch((error) => {
           console.log(error)
+      });
+};
+
+export const getRooms = () => async dispatch => {
+  fb.database()
+      .ref('/rooms')
+      .on('value', snapshot => { 
+        dispatch({
+          type: ROOMS,
+          data: snapshot.val()
+        });
       });
 };
