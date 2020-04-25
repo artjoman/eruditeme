@@ -8,45 +8,18 @@ admin.initializeApp();
   // ---------- CREATE GAME
   //expects query parameter "name" for admin user to create game
   exports.startGame = functions.https.onRequest((req, res) => {
-    // gets name of admin user
+
     var userName = req.query.name;
-    //TODO ensure uniques in database ---------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var gameCode = randomString(6);
 
-    //create game
-    var gameListRef = admin.database().ref('games');
-    var gameListRef = gameListRef.push();
+    var gameId = createGameRecord(userName,gameCode);
+    var sessionId = createSession(gameId,userName);
+    populateGameSessionLookup(gameCode,gameId);
 
-    gameListRef.set({
-        name: userName,
-        code: gameCode,
-        status: "NEW"
-      });
 
-      //create game session
-      var gameId = gameListRef.key;
-
-    var gameReference = "games/"+gameId+"/sessions";
-    var sesionRef = admin.database().ref(gameReference);
-
-    var sesionRef = sesionRef.push();
-    sesionRef.set({
-      name: userName
-    });
-
-    var sesionId = sesionRef.key;
-
-    //populate game session lookup
-
-    var activeGamesRef = admin.database().ref("activeGames").child(gameCode);
-    activeGamesRef.set({
-      gameID: gameId
-    });
-
-    // Send response
     res.send({
       gameId: gameId,
-      sesionId: sesionId,
+      sesionId: sessionId,
       code: gameCode
     });
   });
@@ -63,18 +36,11 @@ admin.initializeApp();
     
     var activeGameRef = admin.database().ref('activeGames/'+gameCode).once('value').then(function(snapshot) {
       var actualGame = snapshot.val().gameID;
-      
-            //create game session
-            var sesionRef = admin.database().ref('games/'+actualGame+'/sessions');      
-            var sesionRef = sesionRef.push();
-            sesionRef.set({
-              name: userName
-            });        
+      var sessionId = createSession(actualGame,userName);
 
-      // Send response
     res.send({
       gameId: actualGame,
-      sesionId: sesionRef.key,
+      sesionId: sessionId,
     });
 
     });
@@ -83,13 +49,51 @@ admin.initializeApp();
 
 
 // --------------- FUNCTIONS-----------------------
+
+  function createGameRecord(userName, gameCode){
+    var gameListRef = admin.database().ref('games');
+    var gameListRef = gameListRef.push();
+
+    gameListRef.set({
+        name: userName,
+        code: gameCode,
+        status: "NEW"
+      });
+
+      return gameListRef.key;
+  }
+
+  function createSession(gameId,userName){
+
+          var gameReference = "games/"+gameId+"/sessions";
+          var sesionRef = admin.database().ref(gameReference);
+      
+          var sesionRef = sesionRef.push();
+          sesionRef.set({
+            name: userName
+          });
+      
+          return sesionRef.key;
+  }
+
+  function populateGameSessionLookup(gameCode, gameId){
+
+    var activeGamesRef = admin.database().ref("activeGames").child(gameCode);
+    activeGamesRef.set({
+      gameID: gameId
+    });
+
+  }
+
+
   function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHJKLMNOPQRSTUVWXYZ023456789';
+    charSet = charSet || 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     var randomString = '';
     for (var i = 0; i < len; i++) {
         var randomPoz = Math.floor(Math.random() * charSet.length);
         randomString += charSet.substring(randomPoz,randomPoz+1);
     }
     return randomString;
+
 }
 
