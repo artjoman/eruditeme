@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+	<style type="text/css">
+
+		.info {
+			width: 75px;
+    		height: 75px;
+    		background: url(erudite-button-options-normal.svg);
+    		background-size: 75px auto;
+    		background-repeat: no-repeat;
+    		outline: none;
+    		border: none;
+		}
+
+        .info:active {
+            background: url(erudite-button-options-pressed.svg);
+            background-size: 75px auto;
+            background-repeat: no-repeat;
+        }
+
+        .info:disabled {
+            background: url(erudite-button-options-disabled.svg);
+            background-size: 75px auto;
+            background-repeat: no-repeat;
+        }
+
+	</style>
+
+</head>
+<body>
+    <button class="info"/>
+    <button class="info" disabled/>
+</body>
+</html>

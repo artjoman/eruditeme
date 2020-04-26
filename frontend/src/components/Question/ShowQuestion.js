@@ -17,7 +17,7 @@ import { common, green, red } from '@material-ui/core/colors';
 import { fb } from '../../firebase'
 import { addQuestion, addCategory } from "../../actions";
 
-class EditQuestions extends Component {
+class ShowQuestion extends Component {
 
     constructor(props) {
         super(props);
@@ -27,7 +27,6 @@ class EditQuestions extends Component {
                 value: ''
             }],
             questions: [],
-            descriptions: [],
             lines: [],
             answers: [],
             categories: [],
@@ -50,14 +49,12 @@ class EditQuestions extends Component {
         let question = {
             text: this.state.question,
             author: this.state.author || 'System',
-            description: this.state.description
         };
         let answers = this.state.answers;
         dispatch(addQuestion(this.state.category, question, answers));
         this.setState({
             text: null,
             author: null,
-            description: null,
             answers: []
         })
         this.closeModal('visibleQ');
@@ -238,7 +235,7 @@ class EditQuestions extends Component {
                         </Table>
                     </FormGroup>
                 </Modal>
-                <Modal visible={this.state.visibleQ} width="800" height="1000" effect="fadeInUp" onClickAway={() => this.closeModal('visibleQ')}>
+                <Modal visible={this.state.visibleQ} width="800" height="600" effect="fadeInUp" onClickAway={() => this.closeModal('visibleQ')}>
                     <div class="modal">
                         <FormGroup>
                             <Table width="600px">
@@ -265,11 +262,6 @@ class EditQuestions extends Component {
                                     <TableRow>
                                         <TableCell align="center" style={{ border: 'none' }}>
                                             <Input name="author" style={{ width: 300 }} value={this.state.author || ''} type="text" label="Author" placeholder="Author" onChange={this.handleFormChange} />
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center" style={{ border: 'none' }}>
-                                            <Input name="description" style={{ width: 300 }} value={this.state.description || ''} type="text" label="Description" placeholder="Description" onChange={this.handleFormChange} />
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
@@ -318,4 +310,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default (connect(mapStateToProps)(EditQuestions));
+export default (connect(mapStateToProps)(ShowQuestion));

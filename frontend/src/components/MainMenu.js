@@ -29,11 +29,14 @@ class MainMenu extends Component {
   };
 
   loginFormSubmit = e => {
-    // const { username } = this.session;
+    const { username } = this.state;
     // const { addSession } = this.props;
     e.preventDefault();
     // addSession({ username: username });
     this.setState({ sessionId: Math.round(Math.random() * 1000000) });
+    const data = {};
+    data.username = username;
+    this.props.history.push({pathname: '/game', data: data});
   };
 
   renderLoginForm = () => {
